@@ -1,0 +1,72 @@
+MODULAR PATTERN:
+1. Using call:
+function greet () {
+  alert(`Hello, my name is ${this.name}`)
+}
+const user = {
+  name: 'John',
+  age: 99,
+}
+greet.call(user);
+
+2. Using bind:
+function greet (lang1, lang2, lang3) {
+  alert(
+    `Hello, my name is ${this.name} and I know ${lang1}, ${lang2}, and ${lang3}`
+  )
+}
+const user2 = {
+  name: 'Henry',
+  age: 99,
+}
+const languages = ['JavaScript', 'Java', 'MS Logo']
+const newFn = greet.bind(user, languages[0], languages[1], languages[2])
+newFn()
+
+3. Using apply
+function greet (lang1, lang2, lang3) {
+  alert(
+    `Hello, my name is ${this.name} and I know ${lang1}, ${lang2}, and ${lang3}`
+  )
+}
+const user3 = {
+  name: 'Henry II',
+  age: 99,
+}
+const languages = ['JavaScript', 'Java', 'MS Logo']
+greet.apply(user, languages)
+
+OBJECTS AND INHERITANCE:
+1. Using new keyword
+var user4 = new Object();
+user4.name='Rudolf'
+user4.age=99
+console.log(user4) // outputs: {name: "Rudolf", age: 99}
+
+2. Using prototype keyword
+ i. On variables:
+            let f = function () {
+                 this.a = 1;
+                 this.b = 2;
+            }
+            let o = new f(); // {a: 1, b: 2}
+            f.prototype.b = 3;
+            f.prototype.c = 4;
+            console.log(o.a); // 1
+            console.log(o.b); // 2
+            console.log(o.c); // 4
+            console.log(o.d); // undefined
+ii. Inheriting methods
+        function Person(firstName,age){
+            this.firstName = firstName;
+            this.age = age;
+        }
+        Person.prototype.getName = function(){
+                return this.firstName;
+        }
+
+        var p = new Person("Firen" , 99);
+        p.hasOwnProperty("firstName") //true
+        p.hasOwnProperty("getName") //false
+        p.getFullName() //Firen
+        // The above code executed beacause of Inheriting the method  
